@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import SearchNotes from './SearchNotes';
-import CreateNote from './CreateNote';
-import './App.css'; 
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import SearchNotes from "./SearchNotes";
+import CreateNote from "./CreateNote";
+import "./App.css";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   const fetchNotes = async () => {
-    const response = await axios.get('http://localhost:4001/notes');
+    const response = await axios.get("http://localhost:4001/notes");
     setNotes(response.data);
     setFilteredNotes(response.data);
   };
@@ -27,7 +27,7 @@ function App() {
   };
 
   const createNote = async (newNote) => {
-    await axios.post('http://localhost:4001/notes', newNote);
+    await axios.post("http://localhost:4001/notes", newNote);
     fetchNotes(); // Fetch updated list after creating a new note
   };
 
@@ -79,10 +79,12 @@ function App() {
                     })
                   }
                 />
-                <button onClick={() => editNote(note.id, editingNote)}>
-                  Save
-                </button>
-                <button onClick={handleCancelEdit}>Cancel</button>
+                <div className="button-group">
+                  <button onClick={() => editNote(note.id, editingNote)}>
+                    Save
+                  </button>
+                  <button onClick={handleCancelEdit}>Cancel</button>
+                </div>
               </div>
             ) : (
               // View mode: Show the note and buttons for Edit/Delete
